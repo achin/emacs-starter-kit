@@ -1,5 +1,6 @@
 ;; load path
 (add-to-list 'load-path "~/.emacs.d/vendor/rainbow/")
+(add-to-list 'load-path "~/.emacs.d/vendor/groovy")
 
 ;; exec path
 (setenv "PATH" (concat "/Library/Clojure/leiningen/bin:" (getenv "PATH")))
@@ -61,4 +62,17 @@
 (add-hook 'html-mode-hook 'webify)
 (add-hook 'css-mode-hook 'webify)
 
+;; groovy
+(require 'groovy-mode)
+
+(global-font-lock-mode 1)
+(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+(add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+
+(defun groovyify ()
+  (setq c-basic-offset 4))
+
+(add-hook 'groovy-mode-hook 'groovyify)
+
+;; start server
 (server-start)
